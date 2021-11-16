@@ -11,14 +11,14 @@
 
 </head>
 <body>
-    <div class="container">
+     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-            <h1 style="margin-top: 20px;">All Employees</h1>
+            <div class="col-md-10">
+            <h1 style="margin-top: 20px;">All Staffs</h1>
             </div>
             
-            <div class="col-md-4">
-                <a href="{{ route('employee.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing" style="margin-top: 20px;">Create Employee</a>
+            <div class="col-md-2">
+                <a href="{{ route('staffs.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing" style="margin-top: 20px;">Create Staff</a>
                 <hr>
             </div>       
         </div>
@@ -31,25 +31,25 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Date of birth</th>
-                        <th>Salary</th>
+                        <th>Gender</th>
                         {{-- <th>Created at</th> --}}
-                        <th>Actions</th>
+                      <th>Actions</th>
                         <th></th>
                         
                     </thead>
                     <tbody>
-                        @foreach ($employees as $employee)
+                        @foreach ($staffs as $staff)
                             <tr>
-                                <th>{{ $employee->id }}</th>
-                                <td>{{ $employee->first_name }}</td>
-                                <td>{{ $employee->last_name }}</td>                           
-                                <td>{{ $employee->dob }}</td>                           
-                                <td>{{ $employee->salary }}</td>                           
+                                <th>{{ $staff->id }}</th>
+                                <td>{{ $staff->first_name }}</td>
+                                <td>{{ $staff->last_name }}</td>                           
+                                <td>{{ $staff->dob }}</td>                           
+                                <td>{{ $staff->gender }}</td>                           
                                 <td>
-                                   <a href="{{ route('employee.show',$employee->id) }}" class="btn btn-info btn-sm">View</a> 
-                                   <a href="{{ route('employee.edit',$employee->id) }}" class="btn btn-warning btn-sm">Edit</a>      
+                                   <a href="{{ route('staffs.show',$staff->id) }}" class="btn btn-info btn-sm">View</a> 
+                                   <a href="{{ route('staffs.edit',$staff->id) }}" class="btn btn-warning btn-sm">Edit</a>      
                                 
-                                    <form action="{{ route('employee.destroy',$employee->id) }}" method="POST" style="display: inline">
+                                    <form action="{{ route('staffs.destroy',$staff->id) }}" method="POST" style="display: inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="if(!confirm('Are you sure want to delete this record?')){ return false; }">delete</button>
@@ -63,6 +63,6 @@
             </div>
         </div>
     </div>
-</body>
+     </body>
 </html>
 

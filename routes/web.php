@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\StaffController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('student', StudentController::class);
 Route::resource('employee', EmployeeController::class);
+Route::resource('staffs', StaffController::class);
 

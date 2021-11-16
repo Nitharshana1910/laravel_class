@@ -17,9 +17,8 @@ class EmployeeController extends Controller
         
         $employees = Employee::all();
 
-        // return a view and pass in the above variable 
         return view('employee.index',['employees'=> $employees]);
-        // return view('employee.index');
+
     }
 
     /**
@@ -29,7 +28,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+
         return view('employee.create');
 
     }
@@ -48,7 +47,7 @@ class EmployeeController extends Controller
 
         $employee->first_name = $request->fname;
         $employee->last_name = $request->lname;
-        $employee->bod = $request->bod;
+        $employee->dob = $request->dob;
         $employee->salary = $request->salary;
   
         $employee->save();
@@ -64,6 +63,9 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
+        $employee = Employee::find($id);
+        // return view('employee.show',['employee'=> $employee]);
+        return view('employee.show',compact('employee'));
     }
 
     /**
@@ -74,7 +76,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+        return view('employee.edit',['employee'=> $employee]);
     }
 
     /**
@@ -86,7 +89,18 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+       $employee = Employee::find($id);
+  
+       $employee->first_name = $request->input('first_name');
+       $employee->last_name = $request->input('last_name');
+       $employee->dob = $request->input('dob');
+       $employee->salary = $request->input('salary');
+
+       $employee->save();
+
+       return redirect()->route('employee.index');
+
     }
 
     /**
@@ -97,6 +111,10 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        $employee->delete();
+
+        return redirect()->route('employee.index');
     }
 }
