@@ -32,6 +32,8 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="/uploads/{{ $staff->photo }}" class="img-fluid rounded-start">
+
+                        {{-- <img src="..." class="img-fluid rounded-start" alt="..."> --}}
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -67,6 +69,7 @@
                       
                     </div>
                     <div class="col-sm-6">
+                        {{-- <a href="{{ route('employee.destroy',$employee->id) }}" class="btn btn-danger btn-sm" method="DELETE">Delete</a>        --}}
                         <form action="{{ route('staffs.destroy',$staff->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -78,5 +81,14 @@
         </div>
     </div>
     </div>
+      {{-- <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+           
+            <a href="{{ route('employee.index') }}" class="btn btn-info btn-sm">Show all</a>
+                         
+        </div>
+    </div> --}}
+
 </body>
 </html>

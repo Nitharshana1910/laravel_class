@@ -34,6 +34,7 @@
         @method('PUT')
         <label for="photo">Upload Profile Picture</label>
 			<input type="file" name="photo" value="" />
+            {{-- <input type="file" name="image" class="form-control" placeholder="Post Image"> --}}
                     <img src="/uploads/{{ $staff->photo }}" width="200px"><br><br>
 
         <label for="first_name">First Name</label>
@@ -53,6 +54,7 @@
 				<option value="12" {{ $staff->grade==12 ? 'selected' : '' }}>12</option>
 			</select><br><br>
 
+       {{-- {{$subjects = json_decode($staff->subject);}}  --}}
         <label for="Subjects">Subjects</label><br>
             <input type="checkbox" id="tamil" name="subject[]" value="Tamil" {{ in_array("Tamil", json_decode($staff->subject)) ? 'checked' : ''}}>
             <label for="tamil"> Tamil</label><br>
@@ -71,7 +73,11 @@
         <input type="date" id="dob" name="dob" value="{{ $staff->dob }}"><br><br>
 
         <label for="address">Address</label>
-        <textarea id="address" name = "address" rows="2" onKeyPress class="form-control">{{ $staff->address }}</textarea><br>
+        {{-- <input type="textarea" id="address" name="address" value="{{ $staff->address }}"><br><br> --}}
+
+        <textarea id="address" name = "address" rows="2" onKeyPress class="form-control">
+            {{{ $staff->address }}}
+            </textarea><br>
 
         <input type="submit" class="btn btn-primary">
     </form><br>

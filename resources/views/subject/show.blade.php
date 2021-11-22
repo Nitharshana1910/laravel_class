@@ -15,31 +15,27 @@
       
         <div class="row">
             <div class="col-md-8">
-                <h3 style="text-align: center">First Name: {{ $employee->first_name }}</h3>
-                <h3 style="text-align: center">Last Name: {{ $employee->last_name }}</h3>
-                <h3 style="text-align: center">Salary: {{ $employee->salary }}</h3>
-                <h3 style="text-align: center">Date of birth: {{ $employee->dob }}</h3>
+                <h3 style="text-align: center">Subject Name: {{ $subject->subject_name }}</h3>
             </div>
         
             <div class="col-md-4">
                 <div class="well">
                     <dl class="dl-horizontal">
                         <label>Created At:</label>
-                        <p>{{ date('M j,Y h:ia', strtotime($employee->created_at)) }}</p>
+                        <p>{{ date('M j,Y h:ia', strtotime($subject->created_at)) }}</p>
                     </dl>
                     <dl class="dl-horizontal">
                         <label>Last Updated:</label>
-                        <p>{{ date('M j,Y h:ia', strtotime($employee->updated_at)) }}</p>
+                        <p>{{ date('M j,Y h:ia', strtotime($subject->updated_at)) }}</p>
                     </dl>
                     <hr>
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="{{ route('employee.edit',$employee->id) }}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{{ route('subjects.edit',$subject->id) }}" class="btn btn-success btn-sm">Edit</a>
                           
                         </div>
-                        <div class="col-sm-6">
-                            {{-- <a href="{{ route('employee.destroy',$employee->id) }}" class="btn btn-danger btn-sm" method="DELETE">Delete</a>        --}}
-                            <form action="{{ route('employee.destroy',$employee->id) }}" method="POST">
+                        <div class="col-sm-6">      
+                            <form action="{{ route('subjects.destroy',$subject->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm btn-block" onclick="if(!confirm('Are you sure want to delete this record?')){ return false; }">Delete</button>
@@ -55,7 +51,7 @@
         <div class="col-md-8"></div>
         <div class="col-md-4">
            
-            <a href="{{ route('employee.index') }}" class="btn btn-info btn-sm">Back</a>
+            <a href="{{ route('subjects.index') }}" class="btn btn-info btn-sm">Back</a>
                          
         </div>
     </div>

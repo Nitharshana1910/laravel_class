@@ -16,9 +16,10 @@ class EmployeeController extends Controller
     {
         
         $employees = Employee::all();
-
+        // return $employees;
+        // return a view and pass in the above variable 
         return view('employee.index',['employees'=> $employees]);
-
+        // return view('employee.index');
     }
 
     /**
@@ -28,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-
+        //
         return view('employee.create');
 
     }
@@ -76,7 +77,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
+        //
+        // find the post in the database and save as var
         $employee = Employee::find($id);
+        //return the view and pass in to the var we perviously created
         return view('employee.edit',['employee'=> $employee]);
     }
 
@@ -90,15 +94,21 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
     
+       //save data to the database
+       //find the existing row from database by using id and set into that variable
        $employee = Employee::find($id);
-  
+
+       
        $employee->first_name = $request->input('first_name');
        $employee->last_name = $request->input('last_name');
        $employee->dob = $request->input('dob');
        $employee->salary = $request->input('salary');
 
        $employee->save();
+    //    $employee->update(); - we can use update also
+        // $employee->update($request->all());
 
+       //redirect with the flash data to employee.show 
        return redirect()->route('employee.index');
 
     }
@@ -111,6 +121,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
+        //
         $employee = Employee::find($id);
 
         $employee->delete();

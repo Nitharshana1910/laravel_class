@@ -6,6 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\TeacherController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +25,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Route::get('students', [StudentController::class,'index']);
+Route::resource('students', StudentController::class);
 Route::resource('employee', EmployeeController::class);
 Route::resource('staffs', StaffController::class);
+Route::resource('grades', GradeController::class);
+Route::resource('subjects', SubjectController::class);
+Route::resource('phones', PhoneController::class);
+Route::resource('teachers', TeacherController::class);
 

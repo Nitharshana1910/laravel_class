@@ -11,22 +11,14 @@
 
 </head>
 <body>
-    <h1>Employee Edit</h1>
-    <form action="{{ route('employee.update',$employee->id) }}" method="post">
+    <h1>Phone Number Create</h1>
+    <form action="{{route('phones.store')}}" method="post">
         @csrf
-        @method('PUT')
-        {{-- we use method('put') here because if use put method in form it wont work --}}
-        <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" value="{{ $employee->first_name }}"><br><br>
-        <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" value="{{ $employee->last_name }}"><br><br>
-        <label for="dob">Date ob birth</label>
-        <input type="date" id="dob" name="dob" value="{{ $employee->dob }}"><br><br>
-        <label for="salary">Salary</label>
-        <input type="number" id="salary" name="salary" value="{{ $employee->salary }}"><br><br>
+        <label for="phone_no">Phone Number</label>
+        <input type="text" id="phone_no" name="phone_no"><br><br>
         <input type="submit" class="btn btn-primary">
     </form><br>
-    <a href="{{ route('employee.index') }}" class="btn btn-info btn-sm">Show all</a>
+    <a href="{{ route('phones.index') }}" class="btn btn-info btn-sm">Show all</a>
 
 </body>
 </html>

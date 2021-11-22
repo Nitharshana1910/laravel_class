@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Staff;
+// use Illuminate\Support\Facades\Validator;
+// use DateTime;
 
 
 class StaffController extends Controller
@@ -15,7 +16,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-
+        //
         $staffs = Staff::all();
         return view('staff.index',['staffs'=> $staffs]);
     }
@@ -27,7 +28,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-
+        //
         return view('staff.create');
 
     }
@@ -40,31 +41,36 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        //create new staff object
         $staff = new Staff();
 
-        $staff->first_name = $request->first_name;
-        $staff->last_name = $request->last_name;
-        $staff->gender = $request->gender;
-        $staff->grade = $request->grade;
-        $staff->address = $request->address;
-        $subject=json_encode($request['subject']); // change array into object
-        $staff->subject = $subject;
-        $staff->email_address = $request->email_address;
-        $staff->mobile_no = $request->mobile_no;
-        $staff->dob = $request->dob;
+        $validated = $request->validate([
+            'dob' => 'required|date|before:-18 years',
+        ]);
 
-        if($image = $request->file('photo')){
-            // image path public/uploads
-        $imageDestinationPath = 'uploads/';
-            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($imageDestinationPath, $postImage);
-            $staff['photo'] = "$postImage";
-        }else{
-            $staff['photo'] = "user.jpg";
-        }
-
-        $staff->save();
-        return redirect()->route('staffs.index');
+            $staff->first_name = $request->first_name;
+            $staff->last_name = $request->last_name;
+            $staff->gender = $request->gender;
+            $staff->grade = $request->grade;
+            $staff->address = $request->address;
+            $subject=json_encode($request['subject']);
+            $staff->subject = $subject;
+            $staff->email_address = $request->email_address;
+            $staff->mobile_no = $request->mobile_no;
+            $staff->dob = $request->dob;
+    
+            if($image = $request->file('photo')){
+            $imageDestinationPath = 'uploads/';
+                $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($imageDestinationPath, $postImage);
+                $staff['photo'] = "$postImage";
+            }else{
+                $staff['photo'] = "user.jpg";
+            }
+    
+            $staff->save();
+            return redirect()->route('staffs.index');
+       
 
     }
 
@@ -91,6 +97,7 @@ class StaffController extends Controller
     public function edit($id)
     {
          $staff = Staff::find($id);
+         //return the view and pass in to the var we perviously created
          return view('staff.edit',['staff'=> $staff]);
     }
 
